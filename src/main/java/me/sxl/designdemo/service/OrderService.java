@@ -1,24 +1,24 @@
 package me.sxl.designdemo.service;
 
-import me.sxl.designdemo.exception.OrderException;
-import me.sxl.designdemo.model.vo.OrderVO;
-import me.sxl.designdemo.model.Response;
+import me.sxl.designdemo.model.OrderDO;
+import me.sxl.designdemo.model.dto.ChangeBalanceDTO;
+import me.sxl.designdemo.model.dto.UpdateOrderDTO;
 
 public interface OrderService {
 
     /**
-     * 统一参数校验
+     * 记录一笔订单
      */
-    <T> Boolean checkParams(T t) throws OrderException;
+    Boolean recordOrder(OrderDO orderDO);
 
     /**
-     * 统一下单
+     * 更新订单状态(用于扣款结束后)
      */
-    <T> Response<OrderVO> place(T t) throws OrderException;
+    Boolean updateOrder(UpdateOrderDTO updateOrderDTO);
 
     /**
-     * 统一支付
+     * 变更账户余额
      */
-    <T> Response<OrderVO> pay(T t) throws OrderException;
+    Boolean changeBalance(ChangeBalanceDTO changeBalanceDTO);
 
 }
